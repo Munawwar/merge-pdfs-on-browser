@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>CAnvas approach - slower and bad quality</title>
+  </head>
+  <body onload="load()">
+    <div>
+      Processing <span id="page_num"></span> / <span id="page_count"></span>
+    </div>
+    <div>
+      <canvas
+        id="the-canvas"
+        style="border: 1px solid black; visibility: hidden;"
+      ></canvas>
+    </div>
+
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
+    <script src="merge-pdf.js"></script>
+  </body>
+</html>

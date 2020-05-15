@@ -1,0 +1,38 @@
+{
+  "name": "pdf-merge-on-browser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "merge-pdf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base"
+  },
+  "dependencies": {
+    "concat-stream": "^2.0.0",
+    "node-fetch": "^2.6.0",
+    "pdf-merger-js": "^3.0.1",
+    "pdfjs": "^2.3.7",
+    "regenerator-runtime": "^0.13.5"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

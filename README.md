@@ -22,8 +22,8 @@ This use HTML5 canvas to render the PDF content first and then convert each page
 
 ```sh
 npm i -g parcel-bundler
-cd public/pdf-approach/
-parcel pdf-merger-js-adapted.js dist/
+cd public/pdfjs-approach/
+parcel pdf-merger-js-adapted.js
 ```
 
 ## For building canvas appraoch

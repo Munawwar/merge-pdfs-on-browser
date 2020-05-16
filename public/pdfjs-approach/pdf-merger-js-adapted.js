@@ -12,7 +12,6 @@
 /* global fetch, Blob, document, window */
 // @ts-check
 const pdf = require('pdfjs');
-const concat = require('concat-stream');
 
 function downloadBuffer({ buffer, fileName }) {
   // Create an invisible A element
@@ -35,6 +34,17 @@ function downloadBuffer({ buffer, fileName }) {
   document.body.removeChild(a);
 }
 
+/**
+ * @param {_Readable} readable
+ */
+async function readableToBuffer(readable) {
+  const chunks = [];
+  for await (const chunk of readable) {
+    chunks.push(chunk);
+  }
+  return Buffer.concat(chunks);
+}
+
 async function mergePdfs(inputUrls, outputFileName = 'merged.pdf') {
   const doc = new pdf.Document();
 
@@ -53,21 +63,16 @@ async function mergePdfs(inputUrls, outputFileName = 'merged.pdf') {
     doc.setTemplate(ext);
     doc.addPagesOf(ext);
   });
+  doc.end();
 
   // download
   console.log('gathering chunks..');
-  const concatStream = concat((buffer) => {
-    console.log('gathered. downlading..');
-    downloadBuffer({
-      buffer,
-      fileName: outputFileName,
-    });
+  // @ts-ignore
+  const buffer = await readableToBuffer(doc);
+  downloadBuffer({
+    buffer,
+    fileName: outputFileName,
   });
-  doc.on('error', (err) => {
-    console.error(err); // print the error to STDERR
-  });
-  doc.pipe(concatStream);
-  await doc.end();
 }
 
 // @ts-ignore

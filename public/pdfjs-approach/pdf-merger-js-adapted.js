@@ -47,6 +47,7 @@ async function readableToBuffer(readable) {
 
 async function mergePdfs(inputUrls, outputFileName = 'merged.pdf') {
   const doc = new pdf.Document();
+  const start = Date.now();
 
   console.log('dowloading pdfs..');
   const inputFiles = await Promise.all(
@@ -56,6 +57,7 @@ async function mergePdfs(inputUrls, outputFileName = 'merged.pdf') {
         return res.arrayBuffer();
       }),
   );
+
 
   inputFiles.forEach((inputFileBuffer) => {
     console.log('adding pdf..');
@@ -69,10 +71,12 @@ async function mergePdfs(inputUrls, outputFileName = 'merged.pdf') {
   console.log('gathering chunks..');
   // @ts-ignore
   const buffer = await readableToBuffer(doc);
+  console.log('preparing download..');
   downloadBuffer({
     buffer,
     fileName: outputFileName,
   });
+  console.log('Time taken = ', Date.now() - start);
 }
 
 // @ts-ignore

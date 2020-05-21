@@ -17,7 +17,8 @@
     "extends": "airbnb-base"
   },
   "dependencies": {
-    "pdfjs": "^2.3.7"
+    "pdfjs": "^2.3.7",
+    "regenerator-runtime": "^0.13.5"
   },
   "browserslist": {
     "production": [
